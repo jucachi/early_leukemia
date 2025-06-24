@@ -32,7 +32,7 @@ When you click the **Render** button a document will be generated that includes 
 1 + 1
 ```
 
-You can add options to executable code like this 
+You can add options to executable code like this
 
 ```{r}
 #| echo: false
@@ -40,3 +40,179 @@ You can add options to executable code like this
 ```
 
 The `echo: false` option disables the printing of code (only output is displayed).
+
+## Packages
+
+```{r}
+pacman::p_load(
+  rio,
+  here,
+  reportfactory,
+  rfextras,
+  tidyverse,
+  ggcorrplot,
+  ggsci,
+  ggpubr,
+  ggbiplot,
+  finalfit,
+  gtsummary,
+  flextable,
+  ftExtra,
+  broom,
+  performance,
+  lmtest,
+  stats,
+  moments,
+  nortest,
+  epiDisplay,
+  car,
+  Rtsne,
+  factoextra,
+  corrplot,
+  grateful,
+  patchwork,
+  officer,
+  janitor
+)
+```
+
+## References
+
+<https://onlinelibrary.wiley.com/doi/full/10.1002/cam4.2740> <https://www.nature.com/articles/leu2014234> <https://jamanetwork.com/journals/jamaoncology/fullarticle/2652906> <https://acsjournals.onlinelibrary.wiley.com/doi/full/10.1002/cncr.31296> <https://onlinelibrary.wiley.com/doi/full/10.1002/ajh.26395>
+
+```{r cars}
+dictionary <- function(data) {
+  data |>
+    mutate(
+      time_to_death_after_treatment_days = ff_label(time_to_death_after_treatment_days, "Time to death (days)"),
+      
+      age = ff_label(age, "Age (years)"),
+      ###
+      
+      age.c = case_when(age <= 45 ~ "< 45",
+                         age > 45 ~ ">= 45") |>
+        fct_relevel("< 45", ">= 45") |>
+        ff_label("Age (years)"),
+      
+      sex = factor(sex) |> ###
+        fct_recode("Female" = "female",
+                   "Male" = "male") |>
+        fct_relevel("Female", "Male") |>
+        ff_label("Sex"),
+      
+      born_at = case_when(
+        born_at == "Lima" ~ "Lima",
+        TRUE ~ "Other"
+        ) |> 
+        ff_label("Born at"),
+      
+      type_aml = factor(type_aml),
+      
+      comorbidities = factor(comorbidities),
+      
+      respiratory_diseases = factor(respiratory_diseases),
+      
+      cardiovascular_and_metabolic_diseases = factor(cardiovascular_and_metabolic_diseases),
+      
+      infectious_diseases = factor(infectious_diseases),
+      
+      oncological_diseases = factor(oncological_diseases),
+      
+      neurological_psychiatric_diseases = factor(neurological_psychiatric_diseases),
+      
+      autoimmune_endocrine_diseases = factor(autoimmune_endocrine_diseases),
+      
+      other_conditions = factor(other_conditions),
+      
+      ecog = factor(ecog),
+      
+      infec_complications_before_chemotherapy = factor(infec_complications_before_chemotherapy),
+      
+      neutropenic_enteritis = factor(neutropenic_enteritis),
+      
+      immunosuppressed_pneumonia = factor(immunosuppressed_pneumonia),
+      
+      bacteremia = factor(bacteremia),
+      
+      agent_bacteremia = factor(agent_bacteremia),
+      
+      hemodialysis = factor(hemodialysis),
+      
+      uci_admission = factor(uci_admission),
+      
+      cause_of_death = factor(cause_of_death),
+      
+      creatinine_mg_dl = as.numeric(creatinine_mg_dl),
+      
+      albumin = as.numeric(albumin),
+      
+      lactate_dehydrogenase = as.numeric(lactate_dehydrogenase),
+      
+      platelets = as.numeric(lactate_dehydrogenase),
+      
+      wbc = as.numeric(wbc),
+      
+      karyotype = factor(karyotype),
+      
+      panel = factor(panel),
+      
+      risk = factor(risk),
+      
+      adverse_risk = factor(adverse_risk)
+    )
+}
+```
+
+```{r}
+leukaemia_data_0 = clean_names(leukaemia_data) 
+
+leukaemia_data_0 = dictionary(leukaemia_data_0)
+
+tbl_summary_1 <- 
+  leukaemia_data_0 |> 
+  dplyr::select(time_to_death_after_treatment_days,
+         event_death_30_days,
+         age,
+         sex,
+         born_at,
+         type_aml,
+         comorbidities,
+         respiratory_diseases,
+         cardiovascular_and_metabolic_diseases,
+         infectious_diseases,
+         oncological_diseases,
+         neurological_psychiatric_diseases,
+         autoimmune_endocrine_diseases,
+         other_conditions,
+         ecog,
+         infec_complications_before_chemotherapy,
+         neutropenic_enteritis,
+         immunosuppressed_pneumonia,
+         bacteremia,
+         agent_bacteremia,
+         hemodialysis,
+         uci_admission,
+         cause_of_death,
+         creatinine_mg_dl,
+         albumin,
+         bt,
+         lactate_dehydrogenase,
+         platelets,
+         wbc,
+         karyotype,
+         panel,
+         risk,
+         adverse_risk
+         ) %>% 
+  tbl_summary()
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
