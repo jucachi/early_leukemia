@@ -106,59 +106,86 @@ dictionary <- function(data) {
         ) |> 
         ff_label("Born at"),
       
-      type_aml = factor(type_aml),
+      type_aml = factor(type_aml)|>
+        ff_label("Type AML"),
       
-      comorbidities = factor(comorbidities),
+      comorbidities = factor(comorbidities) |>
+        ff_label("Comorbidities"),
       
-      respiratory_diseases = factor(respiratory_diseases),
+      respiratory_diseases = factor(respiratory_diseases) |>
+        ff_label("Respiratory diseases"),
       
-      cardiovascular_and_metabolic_diseases = factor(cardiovascular_and_metabolic_diseases),
+      cardiovascular_and_metabolic_diseases = factor(cardiovascular_and_metabolic_diseases) |>
+      ff_label("Cardiovascular and metabolic diseases"),
       
-      infectious_diseases = factor(infectious_diseases),
+      infectious_diseases = factor(infectious_diseases) |>
+        ff_label("Infectious diseases"),
       
-      oncological_diseases = factor(oncological_diseases),
+      oncological_diseases = factor(oncological_diseases) |>
+        ff_label("Oncological diseases"),
       
-      neurological_psychiatric_diseases = factor(neurological_psychiatric_diseases),
+      neurological_psychiatric_diseases = factor(neurological_psychiatric_diseases) |>
+        ff_label("Neurological psychiatric diseases"),
       
-      autoimmune_endocrine_diseases = factor(autoimmune_endocrine_diseases),
+      autoimmune_endocrine_diseases = factor(autoimmune_endocrine_diseases) |>
+        ff_label("Autoimmune endocrine diseases"),
       
-      other_conditions = factor(other_conditions),
+      other_conditions = factor(other_conditions) |>
+        ff_label("Other conditions"),
       
-      ecog = factor(ecog),
+      ecog = factor(ecog) |>
+        ff_label("ECOG"),
       
-      infec_complications_before_chemotherapy = factor(infec_complications_before_chemotherapy),
+      infec_complications_before_chemotherapy = factor(infec_complications_before_chemotherapy) |>
+        ff_label("Infec complications before chemotherapy"),
       
-      neutropenic_enteritis = factor(neutropenic_enteritis),
+      neutropenic_enteritis = factor(neutropenic_enteritis) |>
+        ff_label("Neutropenic enteritis"),
       
-      immunosuppressed_pneumonia = factor(immunosuppressed_pneumonia),
+      immunosuppressed_pneumonia = factor(immunosuppressed_pneumonia) |>
+        ff_label("Immunosuppressed pneumonia"),
       
-      bacteremia = factor(bacteremia),
+      bacteremia = factor(bacteremia) |>
+        ff_label("Bacteremia"),
       
-      agent_bacteremia = factor(agent_bacteremia),
+      agent_bacteremia = factor(agent_bacteremia) |>
+        ff_label("Agent_bacteremia"),
       
-      hemodialysis = factor(hemodialysis),
+      hemodialysis = factor(hemodialysis) |>
+        ff_label("Hemodialysis"),
       
-      uci_admission = factor(uci_admission),
+      uci_admission = factor(uci_admission) |>
+        ff_label("Uci admission"),
       
-      cause_of_death = factor(cause_of_death),
+      cause_of_death = factor(cause_of_death) |>
+        ff_label("Cause of death"),
       
-      creatinine_mg_dl = as.numeric(creatinine_mg_dl),
+      creatinine_mg_dl = as.numeric(creatinine_mg_dl) |>
+        ff_label("Creatinine mg/dL"),
       
-      albumin = as.numeric(albumin),
+      albumin = as.numeric(albumin) |>
+        ff_label("Albumin g/dL"),
       
-      lactate_dehydrogenase = as.numeric(lactate_dehydrogenase),
+      lactate_dehydrogenase = as.numeric(lactate_dehydrogenase) |>
+        ff_label("Lactate dehydrogenase U/L"),
       
-      platelets = as.numeric(lactate_dehydrogenase),
+      platelets = as.numeric(platelets)|>
+        ff_label("Platelets"),
       
-      wbc = as.numeric(wbc),
+      wbc = as.numeric(wbc) |>
+        ff_label("WBC"),
       
-      karyotype = factor(karyotype),
+      karyotype = factor(karyotype) |>
+        ff_label("Karyotype"),
       
-      panel = factor(panel),
+      panel = factor(panel) |>
+        ff_label("Panel"),
       
-      risk = factor(risk),
+      risk = factor(risk) |>
+        ff_label("Risk"),
       
-      adverse_risk = factor(adverse_risk)
+      adverse_risk = factor(adverse_risk) |>
+        ff_label("Adverse risk")
     )
 }
 ```
